@@ -6,13 +6,13 @@ terraform {
       version = "~> 5.49.0"
     }
   }
-  backend "s3" {
-    bucket         = "dev-oty-tf-bucket "
+ backend "s3" {
+    bucket         = "dev-oty-tf-bucket"  # ✅ No trailing space
     region         = "us-east-1"
     key            = "eks/terraform.tfstate"
-    dynamodb_table = "TF-Lock-Files"
+    use_lockfile   = true  # ✅ Updated from dynamodb_table
     encrypt        = true
-  }
+}
 }
 
 provider "aws" {
